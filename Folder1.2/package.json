@@ -1,0 +1,11 @@
+{
+  "name": "folder1.2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node start"
+  },
+  "author": "",
+  "license": "ISC"
+}

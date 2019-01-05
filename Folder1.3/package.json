@@ -1,0 +1,16 @@
+{
+  "name": "sarah",
+  "version": "1.0.0",
+  "description": "Testing out Atom's collab-mode.",
+  "main": "sarah.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "The Clones",
+  "license": "ISC",
+  "comment": "That's really, really, really, really cool. What do you want to code? I didn't think this far.... It have another file open. I'll go there and see if you can follow? Let's look up how to do multiple files?",
+  "comment": "This comment feels wrong. It's too formal. I need to create a compiler, calling the language ",
+  "sarahcomment": "It worked!!!!!!! Wow. Wow. This is super super super cool! Can you send an entire project, or just one file? No, I can only view this one. Sorry.  You just disappeared! Okay",
+  "newcomment": "Edit edit edit",
+  "nscomment": "They said it's possible as of Teletype 0.3.0, but I"
+}
