@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id = "um"></canvas>
+    </body>
+    <script>
+        const a = document.getElementById("um"),
+              b = a.getContext("2d");
+        let i = 1;
+        a.width = window.innerWidth;
+        a.height = window.innerHeight;
+        b.fillRect(0, 0, a.width, a.height);
+        class Stuff {
+            constructor(x, y) {
+                b.beginPath();
+                b.fillStyle = `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
+                b.strokeStyle = `rgb(${Math.random()*255}, ${Math.random()*255}, ${Math.random()*255})`;
+                b.arc(x, y, i, 0, Math.PI*2);
+                b.stroke();
+                b.fill();
+                i++;
+            }
+        }
+        document.addEventListener("click", (e)=>{
+            let q = new Stuff(e.clientX, e.clientY);
+            // q.addEventListener("click", ()=> {
+            //     alert(i);
+            // });
+        });
+        setInterval(()=>{
+            let q = new Stuff(Math.random()*a.width, Math.random()*a.height);
+        }, a.width*a.height/1500);
+    </script>
+</html>

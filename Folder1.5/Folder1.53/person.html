@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="num"></canvas>
+</body>
+<script>
+    const a = document.getElementById("num"),
+          b = a.getContext("2d");
+    a.width = window.innerWidth;
+    a.height = window.innerHeight;
+    b.fillRect(0, 0, a.width, a.height);
+    b.beginPath();
+    b.fillStyle = "white";
+    b.arc(a.width/2, a.height/4, a.width/8, 0, Math.PI*2);
+    b.fill();
+    b.stroke();
+    b.beginPath();
+    b.fillStyle = "white";
+    b.arc(a.width / 2 - a.width / 8, a.height / 4 + a.width / 8, a.width / 32, 0, Math.PI * 2);
+    b.arc(a.width / 2 - a.width / 8, a.height / 4 + a.width / 8 + a.width/2, a.width / 32, 0, Math.PI * 2);
+    // b.arc(a.width / 2 - a.width / 8 + a.width/4, a.height / 4 + a.width / 8, a.width / 32, 0, Math.PI * 2);
+    b.fill();
+    b.stroke(); 
+    b.beginPath();
+    b.fillStyle = "white";
+    // b.arc(a.width / 2 - a.width / 8, a.height / 4 + a.width / 8, a.width / 32, 0, Math.PI * 2);
+    b.arc(a.width / 2 - a.width / 8 + a.width / 4, a.height / 4 + a.width / 8, a.width / 32, 0, Math.PI * 2);
+    b.arc(a.width / 2 - a.width / 8 + a.width / 4, a.height / 4 + a.width / 8 + a.width/2, a.width / 32, 0, Math.PI * 2);
+    b.fill();
+    b.stroke();
+    b.fillRect(a.width/2-a.width/8, a.height/4+a.width/8, a.width/4, a.width/2);
+</script>
+</html>

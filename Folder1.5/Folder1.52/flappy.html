@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id = "flap"></canvas>
+    </body>
+    <script>
+        const a = document.getElementById("flap"),
+        b = a.getContext("2d"),
+        sz = 25;
+        a.width = window.innerWidth;
+        a.height = window.innerHeight;
+        let h = a.height/2;
+        b.fillRect(0,0,a.width,a.height);
+        b.beginPath();
+        b.fillStyle = "yellow";
+        b.arc(a.width/2, a.height/2, sz, 0, Math.PI*2);
+        b.fill();
+        b.stroke();
+        document.addEventListener("click", ()=>{
+            h-=20;
+            b.fillStyle = "black";
+            b.fillRect(0,0,a.width,a.height);
+            b.fill();
+            b.beginPath();
+            b.fillStyle = "yellow";
+            b.arc(a.width/2, h, sz, 0, Math.PI*2);
+            b.fill();
+            b.stroke();
+        });
+        setInterval(()=>{
+            h+=1;
+            b.fillStyle = "black";
+            b.fillRect(0,0,a.width,a.height);
+            b.fill();
+            b.beginPath();
+            b.fillStyle = "yellow";
+            b.arc(a.width/2, h, sz, 0, Math.PI*2);
+            b.fill();
+            b.stroke();
+        }, 25);
+        // const check = () => {
+        //     window.requestAnimationFrame(check);
+        //     if (h == a.height-sz || h == sz) alert("You Lose!");
+        //     console.log(h);
+        // }
+        // const 
+        setInterval(() => {
+            if (h == a.height-sz || h == sz) {alert("You Lose!"); h = a.height/2;}
+        }, 0);
+    </script>
+</html>

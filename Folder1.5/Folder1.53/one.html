@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            canvas {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id = "num"></canvas>
+    </body>
+    <script>
+        // console.log(new Date());
+        const a = document.getElementById("num"),
+        b = a.getContext("2d");
+        // console.log(a, b);
+        a.width = window.innerWidth;
+        a.height = window.innerHeight;
+        b.fillRect(0, 0, a.width, a.height);
+        const sc = 1;
+        const num = {
+            0: (o) => {
+                let d = o.dimensions;
+                b.fillStyle = o.color;
+                b.fillRect(o.x, o.y, d.w, d.border);
+                b.fillRect(o.x, o.y+d.h-d.border, d.w, d.border);
+                b.fillRect(o.x, o.y, d.border, d.h);
+                b.fillRect(o.x+d.w-d.border, o.y, d.border, d.h);
+            },
+            1: (o) => {
+                let d = o.dimensions;
+                b.fillStyle = o.color;
+                // b.fillRect(o.x, o.y, d.w, d.border);
+                // b.fillRect(o.x, o.y+d.h-d.border, d.w, d.border);
+                // b.fillRect(o.x, o.y, d.border, d.h);
+                b.fillRect(o.x+d.w-d.border, o.y, d.border, d.h);
+            },
+            2: (o) => {
+                let d = o.dimensions;
+                b.fillStyle = o.color;
+                b.fillRect(o.x, o.y, d.w, d.border);
+                b.fillRect(o.x, o.y+d.h-d.border, d.w, d.border);
+                b.fillRect(o.x, o.y+d.h/2-d.border/2, d.w, d.border);
+                b.fillRect(o.x, o.y+d.h/2, d.border, d.h/2);
+                b.fillRect(o.x+d.w-d.border, o.y, d.border, d.h/2);
+            },
+            3: (o) => {
+                let d = o.dimensions;
+                b.fillStyle = o.color;
+                b.fillRect(o.x, o.y, d.w, d.border);
+                b.fillRect(o.x, o.y+d.h-d.border, d.w, d.border);
+                b.fillRect(o.x, o.y+d.h/2-d.border/2, d.w, d.border);
+                // b.fillRect(o.x, o.y, d.border, d.h);
+                b.fillRect(o.x+d.w-d.border, o.y, d.border, d.h);
+            },
+            4: (o) => {
+                let d = o.dimensions;
+                b.fillStyle = o.color;
+                // b.fillRect(o.x, o.y, d.w, d.border);
+                // b.fillRect(o.x, o.y+d.h-d.border, d.w, d.border);
+                b.fillRect(o.x, o.y+d.h/2-d.border/2, d.w, d.border);
+                b.fillRect(o.x, o.y, d.border, d.h/2);
+                b.fillRect(o.x+d.w-d.border, o.y, d.border, d.h);
+            },
+            5: (o) => {
+                let d = o.dimensions;
+                b.fillStyle = o.color;
+                b.fillRect(o.x, o.y, d.w, d.border);
+                b.fillRect(o.x, o.y+d.h-d.border, d.w, d.border);
+                b.fillRect(o.x, o.y+d.h/2-d.border/2, d.w, d.border);
+                b.fillRect(o.x, o.y, d.border, d.h/2);
+                b.fillRect(o.x+d.w-d.border, o.y+d.h/2, d.border, d.h/2);
+            },
+            6: (o) => {
+                let d = o.dimensions;
+                b.fillStyle = o.color;
+                b.fillRect(o.x, o.y, d.w, d.border);
+                b.fillRect(o.x, o.y+d.h-d.border, d.w, d.border);
+                b.fillRect(o.x, o.y+d.h/2-d.border/2, d.w, d.border);
+                b.fillRect(o.x, o.y, d.border, d.h);
+                b.fillRect(o.x+d.w-d.border, o.y+d.h/2, d.border, d.h/2);
+            },
+            7: (o) => {
+                let d = o.dimensions;
+                b.fillStyle = o.color;
+                b.fillRect(o.x, o.y, d.w, d.border);
+                // b.fillRect(o.x, o.y+d.h-d.border, d.w, d.border);
+                // b.fillRect(o.x, o.y, d.border, d.h);
+                b.fillRect(o.x+d.w-d.border, o.y, d.border, d.h);
+            },
+            8: (o) => {
+                let d = o.dimensions;
+                b.fillStyle = o.color;
+                b.fillRect(o.x, o.y, d.w, d.border);
+                b.fillRect(o.x, o.y+d.h-d.border, d.w, d.border);
+                b.fillRect(o.x, o.y+d.h/2-d.border/2, d.w, d.border);
+                b.fillRect(o.x, o.y, d.border, d.h);
+                b.fillRect(o.x+d.w-d.border, o.y, d.border, d.h);
+            },
+            9: (o) => {
+                let d = o.dimensions;
+                b.fillStyle = o.color;
+                b.fillRect(o.x, o.y, d.w, d.border);
+                // b.fillRect(o.x, o.y+d.h-d.border, d.w, d.border);
+                b.fillRect(o.x, o.y+d.h/2-d.border/2, d.w, d.border);
+                b.fillRect(o.x, o.y, d.border, d.h/2);
+                b.fillRect(o.x+d.w-d.border, o.y, d.border, d.h);
+            }, 
+        };
+        // for (let i = 0; i < 10; i++) {
+        //     num[i]({dimensions: {w: 100, h:50, border:10}, x: 100, y:i*55, color: "blue"})
+        // }
+        setInterval(()=>{
+            let date = new Date();
+            if (date.getFullYear() == "2019" && date.getMonth() == "0" && date.getDate() == "8") {
+                if (date.getHours() == 0 && date.getMinutes() == 0) { b.fillStyle = "black"; b.fillRect(0, 0, a.width, a.height); b.fill(); }
+                num[5]({ dimensions: { w: Math.random()*a.width / 2, h: Math.random()*a.height / 2, border: Math.random()*50 }, x: Math.random() * a.width, y: Math.random() * a.height, color: `rgb(${Math.random()*255}, ${Math.random() * 255}, ${Math.random() * 255})` });
+                num[5]({ dimensions: { w: a.width / 2, h: a.height / 2, border: 100 }, x: a.width / 4, y: a.height / 4, color: "blue" });
+                b.font = `bold ${a.width/10}px Cursive`;
+                b.textAlign = "center";
+                b.fillText("More Days Left", a.width/2, a.height-a.width/20);
+                b.fill();
+            } else if (date.getFullYear() == "2019" && date.getMonth() == "0" && date.getDate() == "9") {
+                if (date.getHours() == 0 && date.getMinutes() == 0) { b.fillStyle = "black"; b.fillRect(0, 0, a.width, a.height); b.fill(); }
+                num[4]({ dimensions: { w: Math.random() * a.width / 2, h: Math.random() * a.height / 2, border: Math.random() * 50 }, x: Math.random() * a.width, y: Math.random() * a.height, color: `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})` });
+                num[4]({ dimensions: { w: a.width / 2, h: a.height / 2, border: 100 }, x: a.width / 4, y: a.height / 4, color: "blue" });
+                b.font = `bold ${a.width / 10}px Cursive`;
+                b.textAlign = "center";
+                b.fillText("More Days Left", a.width / 2, a.height - a.width / 20);
+                b.fill();
+            } else if (date.getFullYear() == "2019" && date.getMonth() == "0" && date.getDate() == "10") {
+                if (date.getHours() == 0 && date.getMinutes() == 0) { b.fillStyle = "black"; b.fillRect(0, 0, a.width, a.height); b.fill(); }
+                num[3]({ dimensions: { w: Math.random() * a.width / 2, h: Math.random() * a.height / 2, border: Math.random() * 50 }, x: Math.random() * a.width, y: Math.random() * a.height, color: `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})` });
+                num[3]({ dimensions: { w: a.width / 2, h: a.height / 2, border: 100 }, x: a.width / 4, y: a.height / 4, color: "blue" });
+                b.font = `bold ${a.width / 10}px Cursive`;
+                b.textAlign = "center";
+                b.fillText("More Days Left", a.width / 2, a.height - a.width / 20);
+                b.fill();
+            } else if (date.getFullYear() == "2019" && date.getMonth() == "0" && date.getDate() == "11") {
+                if (date.getHours() == 0 && date.getMinutes() == 0) {b.fillStyle = "black"; b.fillRect(0, 0, a.width, a.height); b.fill();}
+                num[2]({ dimensions: { w: Math.random() * a.width / 2, h: Math.random() * a.height / 2, border: Math.random() * 50 }, x: Math.random() * a.width, y: Math.random() * a.height, color: `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})` });
+                num[2]({ dimensions: { w: a.width / 2, h: a.height / 2, border: 100 }, x: a.width / 4, y: a.height / 4, color: "blue" });
+                b.font = `bold ${a.width / 10}px Cursive`;
+                b.textAlign = "center";
+                b.fillText("More Days Left", a.width / 2, a.height - a.width / 20);
+                b.fill();
+            } else if (date.getFullYear() == "2019" && date.getMonth() == "0" && date.getDate() == "12") {
+                if (date.getHours() == 0 && date.getMinutes() == 0) { b.fillStyle = "black"; b.fillRect(0, 0, a.width, a.height); b.fill(); }
+                num[1]({ dimensions: { w: Math.random() * a.width / 2, h: Math.random() * a.height / 2, border: Math.random() * 50 }, x: Math.random() * a.width, y: Math.random() * a.height, color: `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})` });
+                num[1]({ dimensions: { w: a.width / 2, h: a.height / 2, border: 100 }, x: a.width / 4, y: a.height / 4, color: "blue" });
+                b.font = `bold ${a.width / 10}px Cursive`;
+                b.textAlign = "center";
+                b.fillText("More Day Left", a.width / 2, a.height - a.width / 20);
+                b.fill();
+            }
+        },50)
+        // num["9"]({dimensions: {w: 100, h:100, border:10}, x: 100, y:100, color: "blue"});
+    </script>
+</html>
