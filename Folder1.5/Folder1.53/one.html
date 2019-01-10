@@ -14,10 +14,8 @@
         <canvas id = "num"></canvas>
     </body>
     <script>
-        // console.log(new Date());
         const a = document.getElementById("num"),
         b = a.getContext("2d");
-        // console.log(a, b);
         a.width = window.innerWidth;
         a.height = window.innerHeight;
         b.fillRect(0, 0, a.width, a.height);
@@ -34,9 +32,6 @@
             1: (o) => {
                 let d = o.dimensions;
                 b.fillStyle = o.color;
-                // b.fillRect(o.x, o.y, d.w, d.border);
-                // b.fillRect(o.x, o.y+d.h-d.border, d.w, d.border);
-                // b.fillRect(o.x, o.y, d.border, d.h);
                 b.fillRect(o.x+d.w-d.border, o.y, d.border, d.h);
             },
             2: (o) => {
@@ -54,14 +49,11 @@
                 b.fillRect(o.x, o.y, d.w, d.border);
                 b.fillRect(o.x, o.y+d.h-d.border, d.w, d.border);
                 b.fillRect(o.x, o.y+d.h/2-d.border/2, d.w, d.border);
-                // b.fillRect(o.x, o.y, d.border, d.h);
                 b.fillRect(o.x+d.w-d.border, o.y, d.border, d.h);
             },
             4: (o) => {
                 let d = o.dimensions;
                 b.fillStyle = o.color;
-                // b.fillRect(o.x, o.y, d.w, d.border);
-                // b.fillRect(o.x, o.y+d.h-d.border, d.w, d.border);
                 b.fillRect(o.x, o.y+d.h/2-d.border/2, d.w, d.border);
                 b.fillRect(o.x, o.y, d.border, d.h/2);
                 b.fillRect(o.x+d.w-d.border, o.y, d.border, d.h);
@@ -88,8 +80,6 @@
                 let d = o.dimensions;
                 b.fillStyle = o.color;
                 b.fillRect(o.x, o.y, d.w, d.border);
-                // b.fillRect(o.x, o.y+d.h-d.border, d.w, d.border);
-                // b.fillRect(o.x, o.y, d.border, d.h);
                 b.fillRect(o.x+d.w-d.border, o.y, d.border, d.h);
             },
             8: (o) => {
@@ -105,15 +95,11 @@
                 let d = o.dimensions;
                 b.fillStyle = o.color;
                 b.fillRect(o.x, o.y, d.w, d.border);
-                // b.fillRect(o.x, o.y+d.h-d.border, d.w, d.border);
                 b.fillRect(o.x, o.y+d.h/2-d.border/2, d.w, d.border);
                 b.fillRect(o.x, o.y, d.border, d.h/2);
                 b.fillRect(o.x+d.w-d.border, o.y, d.border, d.h);
             }, 
         };
-        // for (let i = 0; i < 10; i++) {
-        //     num[i]({dimensions: {w: 100, h:50, border:10}, x: 100, y:i*55, color: "blue"})
-        // }
         setInterval(()=>{
             let date = new Date();
             if (date.getFullYear() == "2019" && date.getMonth() == "0" && date.getDate() == "8") {
@@ -157,7 +143,6 @@
                 b.fillText("More Day Left", a.width / 2, a.height - a.width / 20);
                 b.fill();
             }
-        },50)
-        // num["9"]({dimensions: {w: 100, h:100, border:10}, x: 100, y:100, color: "blue"});
+        },50);
     </script>
 </html>
