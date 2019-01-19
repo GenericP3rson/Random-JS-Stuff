@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="tessa2"></canvas>
+  prime colour <input type=color id= "helpfully">
+  composite colour  <input type=color id="watermelon">
+    background colour<input type=color id="grass">
+</body>
+<script>
+    var a = document.getElementById("tessa2");
+    var b = a.getContext("2d");
+    a.width = window.innerWidth;
+    a.height = window.innerHeight;
+    var x, y, ang;
+    // b.fillRect(a.width/2, a.height/2, 2, 2);
+    b.fillRect(0, 0, a.width, a.height);
+    b.beginPath();
+    var trans = 1;
+    var dil = Math.random() * 5;
+    // var sz = a.width*10;
+    var bl = Math.random() * 10;
+    var num = 0;
+    var i = 0;
+    function water(car) {
+        for (var i = 2; i < car; i++) {
+            if (car % i == 0) {
+                return false
+            }
+        }
+        if (car == 1 || car == 0) {
+            return false
+        }
+        return true
+    }
+    let purple = `hsl(${Math.random() * 360}, 100%, 50%)`,
+        shoe = `hsl(${Math.random() * 360}, 100%, 50%)`
+    function go() {
+        window.requestAnimationFrame(go);
+        ang = 0.1 * i;
+        x = a.width / 2 + (trans + dil * ang) * Math.cos(ang);
+        y = a.height / 2 + (trans + dil * ang) * Math.sin(ang);
+        if (water(num)) {
+            b.fillStyle = purple
+        }
+        else {
+            b.fillStyle = shoe
+        }
+        b.fillRect(x - (bl / 2), y - (bl / 2), bl, bl);
+        num++;
+        i++;
+    }
+    go();
+</script>
+
+</html>

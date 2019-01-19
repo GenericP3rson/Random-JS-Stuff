@@ -9,37 +9,124 @@
             left: 0;
             z-index: -1;
         }
+        button {
+            position: fixed;
+            top: 10;
+            left: 10;
+            z-index: 1;
+        }
     </style>
 </head>
 
 <body>
     <canvas id="num"></canvas>
+    <button type = "button" id ="ok">Text</button>
 </body>
 <script>
     const a = document.getElementById("num"),
-          b = a.getContext("2d");
+          b = a.getContext("2d"),
+          arm = 75,
+          leg = 200;
+    let next = 0;
     a.width = window.innerWidth;
     a.height = window.innerHeight;
     b.fillRect(0, 0, a.width, a.height);
-    b.beginPath();
-    b.fillStyle = "white";
-    b.arc(a.width/2, a.height/4, a.width/8, 0, Math.PI*2);
-    b.fill();
-    b.stroke();
-    b.beginPath();
-    b.fillStyle = "white";
-    b.arc(a.width / 2 - a.width / 8, a.height / 4 + a.width / 8, a.width / 32, 0, Math.PI * 2);
-    b.arc(a.width / 2 - a.width / 8, a.height / 4 + a.width / 8 + a.width/2, a.width / 32, 0, Math.PI * 2);
-    // b.arc(a.width / 2 - a.width / 8 + a.width/4, a.height / 4 + a.width / 8, a.width / 32, 0, Math.PI * 2);
-    b.fill();
-    b.stroke(); 
-    b.beginPath();
-    b.fillStyle = "white";
-    // b.arc(a.width / 2 - a.width / 8, a.height / 4 + a.width / 8, a.width / 32, 0, Math.PI * 2);
-    b.arc(a.width / 2 - a.width / 8 + a.width / 4, a.height / 4 + a.width / 8, a.width / 32, 0, Math.PI * 2);
-    b.arc(a.width / 2 - a.width / 8 + a.width / 4, a.height / 4 + a.width / 8 + a.width/2, a.width / 32, 0, Math.PI * 2);
-    b.fill();
-    b.stroke();
-    b.fillRect(a.width/2-a.width/8, a.height/4+a.width/8, a.width/4, a.width/2);
+    const human = (x = 0) => {
+        b.beginPath();
+        b.strokeStyle = "#fff";
+        b.fillStyle = "#fff";
+        b.arc(a.width/2, a.height/4, a.width/8, 0, Math.PI*2);
+        b.fill();
+        b.stroke();
+        b.beginPath();
+        b.fillStyle = "#fff";
+        b.arc(a.width / 2 - a.width / 8, a.height / 4 + a.width / 8, a.width / 32, 0, Math.PI * 2);
+        b.arc(a.width / 2 - a.width / 8, a.height / 4 + a.width / 8 + a.width/2, a.width / 32, 0, Math.PI * 2);
+        // b.arc(a.width / 2 - a.width / 8 + a.width/4, a.height / 4 + a.width / 8, a.width / 32, 0, Math.PI * 2);
+        b.fill();
+        b.stroke(); 
+        for (let i = 0 ; i < arm*2; ++i) {
+            b.beginPath();
+            b.fillStyle = "#fff";
+            b.arc(a.width / 2 - a.width / 8 - i, a.height / 4 + a.width / 8 + i, a.width / 32, 0, Math.PI * 2);
+            // b.arc(a.width / 2 - a.width / 8, a.height / 4 + a.width / 8 + a.width / 2, a.width / 32, 0, Math.PI * 2);
+            // b.arc(a.width / 2 - a.width / 8 + a.width/4, a.height / 4 + a.width / 8, a.width / 32, 0, Math.PI * 2);
+            b.fill();
+            b.stroke(); 
+        }
+        b.beginPath();
+        b.fillStyle = "#fff";
+        // b.arc(a.width / 2 - a.width / 8, a.height / 4 + a.width / 8, a.width / 32, 0, Math.PI * 2);
+        b.arc(a.width / 2 - a.width / 8 + a.width / 4, a.height / 4 + a.width / 8, a.width / 32, 0, Math.PI * 2);
+        b.fill();
+        b.stroke();
+        for (let i = 0; i < arm; ++i) {
+            b.beginPath();
+            b.fillStyle = "#fff";
+            b.arc(a.width / 2 - a.width / 8 + a.width / 4 + i, a.height / 4 + a.width / 8 + i, a.width / 32, 0, Math.PI * 2);
+            b.fill();
+            b.stroke();
+        }
+        for (let i = 0; i < leg; ++i) {
+            b.beginPath();
+            b.fillStyle = "#fff";
+            b.arc(a.width / 2 - a.width / 8 + a.width / 4, a.height / 4 + a.width / 8 + a.width/2 + i, a.width / 32, 0, Math.PI * 2);
+            b.fill();
+            b.stroke();
+            b.fillRect(a.width/2-a.width/8, a.height/4+a.width/8, a.width/4, a.width/2);
+        }
+        for (let i = 0; i < leg; ++i) {
+            b.beginPath();
+            b.fillStyle = "#fff";
+            // b.arc(a.width / 2 - a.width / 8, a.height / 4 + a.width / 8, a.width / 32, 0, Math.PI * 2);
+            b.arc(a.width / 2 - a.width / 8, a.height / 4 + a.width / 8 + a.width / 2 + i, a.width / 32, 0, Math.PI * 2);
+            // b.arc(a.width / 2 - a.width / 8 + a.width/4, a.height / 4 + a.width / 8, a.width / 32, 0, Math.PI * 2);
+            b.fill();
+            b.stroke(); 
+        }
+        for (let i = arm; i < arm*2; ++i) {
+            b.beginPath();
+            b.fillStyle = "#fff";
+            b.arc(a.width / 2 - a.width / 8 + a.width / 4 + i + Math.cos(x)*10, a.height / 4 + a.width / 8 + i + Math.sin(x)*10, a.width / 32, 0, Math.PI * 2);
+            b.fill();
+            b.stroke();
+        }
+    }
+    human();
+    let x = 0;
+    setInterval(()=>{
+        if (!next){
+            b.fillStyle = "#000";
+            b.fillRect(0, 0, a.width, a.height);
+            human(x);
+            btn();
+            x++;
+        } else if (next == 1) {
+            // alert("IN");
+            b.fillStyle = "pink";
+            b.font = `bold 100px Cursive`;
+            b.textAlign = "center";
+            b.fillText("Welcome to the Anantomy of the Sarah!", a.width / 2, a.height - a.width / 20);
+            b.fill();
+            // setTimeout(100);
+            b.fillStyle = "#000";
+            b.fillRect(0, 0, a.width, a.height);
+            b.font = `bold 100px Cursive`;
+            b.textAlign = "center";
+            b.fillText("Click the Button to let me show you around...", a.width / 2, a.height - a.width / 20);
+            b.fill();
+        }
+    }, 100);
+    const colour = `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+    const btn = () => {
+        b.fillStyle = colour;
+        b.fillRect(10, 10, 10, 10);
+    };
+    document.getElementById("ok").addEventListener("click", () => {
+        b.fillStyle = "#000";
+        b.fillRect(0, 0, a.width, a.height);
+        ++next;
+    });
+    // const face = ()
 </script>
 </html>
