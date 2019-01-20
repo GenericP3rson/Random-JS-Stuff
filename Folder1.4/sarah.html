@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<!--I'm going to assume something went wrong. Like, Internet being weird again?
+I might keep this open till, like, 10:00:00 then I'll close it down.-->
+<head>
+  <style>
+  #a {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  </style>
+</head>
+<body>
+  Listing out possible hackathon ideas::
+  <ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <canvas id="a"></canvas>
+  <script>
+
+    const text2 = `
+
+    `
+
+
+
+
+
+
+
+    const text = `
+    Captain? It was in essence the same thing you did on one of your past programs. With your slope calculation I think? I should probably look it over once more.
+    On one of your past programs, it had something with it being in consistant as the distance between the mouse and the location expanded. I had sent you a snippet of
+    alternate code. Or it might be still an email draft. I don't know. What dpes that dp? Math.sign(-1) == -1; So it does nothing at all?
+    How so? Well, it's kind of slope, but not really slope. I just found the distance between the two. At first I did Math.sign(), but it then only goes in 4 directions.
+    It returns a number as negative or positive. Well, if the distance is -100, Math.sign(-100) == -1.
+
+    Ah, okay. If it's positive, it would be 1 and if it's 0, it'll be 0? Cool.
+
+    Yes
+
+
+
+    Are you good, Captain?
+
+
+Hit? That was months ago? I have no clue. I'm bad with time.
+Why do you ask? I'm scared now; are you alright? No yets. That's not allowed.
+Um... I would give my health status a better-than-yesterday-and-the-day-before?
+Are you proud of me? I haven't had a panic attack the entire day! I might break my streak!
+I don't know. I had one on Friday and yesterday, but not today? A-frame is being annoying. Yeah, I guess? I've never played around with Three.js yet.
+Well, a-frame is being annoying in the sense that I don't have enough freedoms.  That might be easier?
+How are you doing coding-wise? Anything fantastic?
+Oh yeah, you have a bug in that. If you run your function with any value 2<sup>x</sup> it would call it prime even though it isn't (with the exception of 2).
+Yeah. On your last line, just write return num % 2 != 0 && num != 2;
+I think that was it?
+Also, your slither thing is fantastic. How so?
+Can I copy and paste the code onto here to check it out?
+    `;
+    //Hi! Sorry I took a while; I had to re-install Teletype because I powerwashed a few weeks ago. Weeks? Months? Me too.
+    //How are you doing? Because I am curious? Yes, I'm fine. No injuries. &#9786;
+    //Yay! Why would you have a panic attack? I see. How are you doing coding-wise? It's better than Three.js, though. It's really annoying. You have to literally
+    //Tell the computer everything, including the perspective, and the lights and shadows you pretty much have to program yourself. True; Three.js will give you a lot
+    /*More of that; though it's definately more difficult.*/
+    /*I created a slither-y thing on Codepen, and I messed around with the prime spiral(though you saw that).
+    Oh dear. Hmmm... Really? It's kind of annoying though. I want it to keep a consistant speed, but the farther the mouse is from the worm, the faster it goes.
+    Sure!
+    */
+
+    var b = document.getElementById("a");
+var c = b.getContext("2d");
+b.width = window.innerWidth;
+b.height = window.innerHeight;
+//Create worm
+function worm(list) {
+	c.clearRect(0, 0, b.width, b.height);
+	for(var i = 0; i < list.length; i++) {
+		c.beginPath();
+		c.fillStyle = "hsl(" + i*10 + ", 100%, 50%)";
+		c.arc(list[i][0], list[i][1], 10, 0, 2 * Math.PI);
+		c.fill();
+	}
+}
+//Find x & y
+var slopex = 1,
+		x = b.width/2,
+		y = b.height/2,
+		list = [[x, y]],
+		length = 50,
+		slopey = 1;
+window.addEventListener("mousemove", function(e) {
+	//Change slope
+	var xx = e.clientX,
+			yy = e.clientY;
+	console.log(Math.sign(xx - x)); // So right here, yeah?
+  /*
+  The greater the distance between the points, the faster it'll move?
+  // I'd look through my past sent or drafts,
+  You could express it as a ratio (like actua; slope.)
+  */
+  `I'm switching to this because I can't see grey very well.
+  Y:X
+Actually, on a quick side note, can I tell you some awesome that happened today?
+So, I went to this one SAT prep thing, right? And, little did I know that I was going to take the entire practice SAT with a bunch of juniors.
+So, I wasn't prepared or anything, right? I had just come out of a piano exam, so I was already ready to just, like, program the entire day.
+But, I ended up taking this practice SAT and, turns out, I scored the highest on the Math no calculator section. Out of all the juniors!
+(I didn't bring a calculator for the calculator section, so I didn't score as high there...) I pretty much just had a pop-SAT today?
+  Sure!
+  Sure! Woah. Sounds intimidating. Wow! That's amazing!!!!!! But you would have definately scored as high there should you have brought a calculator.
+  That's amazing! Well, despite the fact you were not prepared, you did better than everyone else.... ??? He's probably just mad you did better than he did
+  At your age. Let's get back to the original question. Sory, the cat just stepped on my keyboard. I will &$
+  Well... the math tutor there hated me afterwards. After the test, we could talk with these tutors to reflect on what we had done wrong. He got really angry at me.
+  He told me (1) That I shouldn't've taken the SAT because I'm just a freshman, and (2) That I didn't know how to divide ('cause that was one of the errors I made)
+  I don't know.... Anyways, back to the code?
+  Or the original purpose of this teletype? *Clap, clap.* Yeah, I think I'm used to it now? Tell your cat I said
+  kelwfhiewohff;eowhfiqfo; back?
+  `
+	slopex = /*Math.sign*/(xx - x)/50; //Yes, that's the problem. Do you know a math-y way to solve it? But what would it be a ratio with?
+	slopey = /*Math.sign*/(yy - y)/50;
+});
+function run() {
+	window.requestAnimationFrame(run);
+	//console.log(slopex);
+	list.push([list[list.length-1][0] + slopex, list[list.length-1][1] + slopey]);
+	if(list.length > length) {
+		list.splice(0, list.length - length);
+	}
+	worm(list);
+}
+run();
+  </script>
+</body>
+</html>

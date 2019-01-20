@@ -1,0 +1,1 @@
+console.log("This is a really bad text editor!!! Huzzah!")
