@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #mon {
+                text-align: center;
+                position: relative;
+            }
+            #boxes {
+                background: pink;
+                position: relative;
+                width: 90vw;
+                height: 75vh;
+                left: 5vw;
+            }
+            #yay, #wind {
+                background: cyan;
+                position: fixed;
+                z-index:9999;
+                width: 500px;
+                height: 500px;
+                left: 25vw;
+                top: 12.5vh;
+            }
+            h1, h2 {
+                text-align: center;
+            }
+            button {
+                background: salmon;
+                width: 100px;
+                height:50px;
+                color: white;
+                border-radius: 100px;
+            }
+            #eve {
+                float:right;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="yay"><button id = "cl" style = "z-index:10000">Close</button></div>
+        <div id="wind">
+            <h1>Add Your Event:</h1>
+            <h2>
+                NAME: <input type="text" id = "name"><br>
+                DETAILS: <input type = "text" id = "det"><br>
+                WHERE: <input type = "text" id = "where"><br>
+                WHEN: <input type="number" min="1" max="31" id="day" value="1"> <select id = "choose_month"></select> <input type="number" id="year" value="2000" max = "9999" min = "0"><br>
+                <button id = "go">Add Event!</button>
+            </h2>
+        </div>
+        <h1 id = "mon"></h1>
+        <div id = "boxes"></div>
+        <button id = "eve">Add Event!</button>
+    </body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        class Calendar {
+            constructor(date = new Date()) {
+                $("#yay").hide();
+                $("#wind").hide();
+                const m = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+                this.date = date;
+                this.limit = [31, (date.getFullYear() % 400 == 0 || (date.getFullYear() % 100 != 0 && date.getFullYear() % 4 == 0) ? 29 : 28), 31, 30,31,30,31,31,30,31,30,31];
+                this.month_num = date.getMonth();
+                this.month_name = m[this.month_num];
+                this.DOM = date.getDate();
+                this.event_id = 0;
+                this.events = {};
+                console.log(this.date, this.month_name, this.month_num, this.DOM);
+                // Make select
+                let z;
+                for (let i = 0; i < m.length; ++i) {
+                    z = document.createElement("OPTION");
+                    z.value = m[i];
+                    z.innerHTML = m[i];
+                    document.getElementById("choose_month").appendChild(z);
+                }
+            }
+            update_month(mon = this.month_name) {
+                document.getElementById("mon").innerHTML = mon;
+                return mon;
+            }
+            first_day(date = this.date, q = date.getDate(), x = date.getDay()) {
+                q = q % 7 - 1;
+                this.start = x - q < 0 ? x + (7-q) : x - q;
+                return this.start;
+            }
+            make_div() {
+                const mum = document.getElementById("boxes");
+                let z, y, n, nn, k = 0, kk = 0, begin = false, ini = this.first_day();
+                // console.log(ini);
+                for (let i = 0; i < 6; ++i) {
+                    z = document.createElement("DIV"); // CREATES THE BOX
+                    z.style.background = "blue";
+                    // console.log(mum.getAttribute("style.width"));
+                    // z.style.width = `${100/8}%`;
+                    z.style.width = `100%`;
+                    z.style.height = `${100/7}%`;
+                    for (let j = 0; j < 7; ++j) {
+                        y = document.createElement("DIV");
+                        y.style.background = "orange";
+                        y.style.width = `${100/8}%`;
+                        y.style.height = "100%";
+                        y.style.display = "inline-block";
+                        if (begin || kk == ini) { // THIS BLOCK DOES THE ID AND NUMBER STUFF
+                            begin = true;
+                            y.id = `id${++k}`;
+                            ++kk;
+                            if (k > this.limit[this.month_num]) {
+                                begin = false;
+                                k = 0;
+                                y.id = `id${k}`;
+                            }
+                        } else {
+                            ++kk;
+                        }
+                        n = document.createElement("DIV"); // THIS IS THE NUMBER
+                        // n.style.background = "magenta";
+                        n.style.width = "100%";
+                        n.style.height = "33.3%";
+                        // nn = document.createTextNode(k);
+                        // // nn.style.width = "1px";
+                        // // nn.style.height = "1px";
+                        // n.appendChild(nn);
+                        n.innerHTML = `\t<b>    ${k ? k : ""}</b>`; 
+                        y.style.verticalAlign = "top";
+                        y.appendChild(n); // ADDS NUMBER TO BOX
+                        z.appendChild(y); // ADDS BOX TO ROW
+                        y = document.createElement("DIV"); // A Spacer?
+                        y.style.width = `${100 / 8 / 6}%`;
+                        y.style.height = `100%`;
+                        y.style.display = "inline-block";
+                        z.appendChild(y);
+                    }
+                    // z.style.height = "50px";
+                    mum.appendChild(z); // ADDS ROW TO BACKGROUND
+                    z = document.createElement("DIV"); // A Spacer?
+                    // z.style.width = `${100 / 8 / 6}%`;
+                    z.style.width = "100%";
+                    z.style.height = `${100 / 7 / 5}%`;
+                    mum.appendChild(z);
+                }
+            }
+            addEvent(div_name = "id1", info = { "name": "RANDOM EVENT", "info": "This is a random event!", "where": "HOME", "when": "FRI", "open": false }) {
+                const mummy = document.getElementById(div_name);
+                let z = document.createElement("DIV");
+                z.style.width = "100%";
+                z.style.height = "33.3%";
+                z.style.background = "magenta";
+                z.innerHTML = info.name;
+                z.id = `mini_id${++this.event_id}`;
+                this.events[z.id] = info;
+                console.log(z.id);
+                mummy.appendChild(z);
+                z.addEventListener("click", (e) => {
+                    console.log(this.events[e.target.id]);
+                    console.log(e.target.id);
+                    let j = this.events[e.target.id],
+                    t = document.getElementById("yay");
+                    if (j.open) {
+                        $("#yay").hide();
+                        t.innerHTML = "";
+                    } else {
+                        $("#yay").show();
+                        t.innerHTML = `<h1 style = "text-align:center">${info.name}</h1>`;
+                        t.innerHTML += `<h2 style = "text-align:center">What? ${info.info}<br>Where? ${info.where}<br>When? ${info.when}</h2>`;
+                    }
+                    j.open = !j.open;
+                });
+            }
+        }
+        let q = new Calendar();
+        q.update_month();
+        console.log(q.first_day())
+        q.make_div();
+        q.addEvent();
+        q.addEvent("id10");
+        document.getElementById("eve").addEventListener("click", () => {
+            $("#wind").show();
+            document.getElementById("go").addEventListener("click", () => {
+                try {
+                q.addEvent(`id${(document.getElementById("day").value)}`, {"name": document.getElementById("name").value, "info": document.getElementById("det").value, "where": document.getElementById("where").value, "when": `${document.getElementById("choose_month").value} ${document.getElementById("day").value}, ${document.getElementById("year").value}`, "open": false});
+                } catch (E) {console.log(E);}
+                $("#wind").hide();
+            });
+        });
+        document.getElementById("cl").addEventListener("click", () => $("#yay").hide());
+    </script>
+</html>

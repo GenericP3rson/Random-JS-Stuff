@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            #a {
+                position: fixed;
+                top: 0;
+                left: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id = "a"></canvas>
+    </body>
+    <script>
+        var a = document.getElementById ("a");
+        var b = a.getContext("2d");
+        a.width = window.innerWidth;
+        a.height = window.innerHeight;
+        b.fillStyle = "black";
+        b.fillRect(0, 0, a.width, a.height);
+        b.beginPath();
+        b.fillStyle="red";
+        b.arc(a.width/2, a.height/2, 20,0,Math.PI*2);
+        b.stroke();
+        b.fill();
+        var i = 30;
+        function anya() {
+            window.requestAnimationFrame(anya);
+            // b.fillRect(0, 0, a.width, a.height);
+            b.beginPath();
+            b.fillStyle = "red";
+            b.arc(a.width / 2 + Math.cos(i) * 10, a.height / 2 + Math.sin(i)*12, 20, 0, Math.PI * 2);
+            b.stroke();
+            b.fill();
+            i++;
+        } 
+        anya();
+    </script>
+</html>

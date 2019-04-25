@@ -1,0 +1,14 @@
+{
+  "name": "tessa",
+  "version": "1.0.0",
+  "description": "TESSA",
+  "main": "tessa.js",
+  "scripts": {
+    "test": "node index"
+  },
+  "keywords": [
+    "tessa"
+  ],
+  "author": "tessa",
+  "license": "ISC"
+}

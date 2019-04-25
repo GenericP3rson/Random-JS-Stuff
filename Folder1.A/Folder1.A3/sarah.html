@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            /*This is CSS: Cross Sarah Super*/
+            #SARAH_IS_THE_BEST_AND_SHE_IS {
+                position: fixed;
+                top: 0;
+                left: 0;
+            }
+        </style>
+    </head>
+    <body>
+        <!--This is HTML: Hello There, My Lady? (Hat tilt)-->
+        <canvas id = "SARAH_IS_THE_BEST_AND_SHE_IS"></canvas>
+    </body>
+    <script>
+        // Welcome to the JS side!!!!!!!!!!
+        // JavaSarah????? Sarah: NO, JAVA IS HORRIBLE!!!!
+        // And thus the drama begins...
+        var a = document.getElementById("SARAH_IS_THE_BEST_AND_SHE_IS");
+        var c = a.getContext("2d");
+        a.width = window.innerWidth;
+        a.height = window.innerHeight;
+        // Compliment Sarah break;
+        c.fillRect(0, 0, a.width, a.height);
+        function circSAR() {
+            c.beginPath();
+            c.fillStyle = "white";
+            c.arc(a.width/2, a.height/2, 10, 0, Math.PI*2);
+            c.fill();
+            c.stroke()
+        }
+    </script>
+</html>
